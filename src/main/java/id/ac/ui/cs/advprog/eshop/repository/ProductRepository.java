@@ -21,6 +21,14 @@ public class ProductRepository {
         productData.remove(deletedProduct);
     }
 
+    public Product edit(Product editedProduct) {
+        String editedProductId = editedProduct.getProductId();
+        Product productInRepository = this.findById(editedProductId);
+        int indexEditedProduct = productData.indexOf(productInRepository);
+        productData.set(indexEditedProduct, editedProduct);
+        return editedProduct;
+    }
+
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
