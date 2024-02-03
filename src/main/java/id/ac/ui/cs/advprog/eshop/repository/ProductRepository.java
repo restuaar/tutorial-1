@@ -16,6 +16,11 @@ public class ProductRepository {
         return product;
     }
 
+    public void delete(String productId){
+        Product deletedProduct = this.findById(productId);
+        productData.remove(deletedProduct);
+    }
+
     public Product edit(Product editedProduct) {
         String editedProductId = editedProduct.getProductId();
         Product productInRepository = this.findById(editedProductId);
