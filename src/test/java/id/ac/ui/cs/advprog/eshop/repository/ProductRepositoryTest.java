@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -193,5 +194,47 @@ public class ProductRepositoryTest {
         assertEquals(editProductData.getProductId(), editedProduct.getProductId());
         assertEquals("Product 1 Edited", editedProduct.getProductName());
         assertEquals(0, editedProduct.getProductQuantity());
+    }
+
+    @Test
+    void testDeleteAndFindByIdProduct() {
+        Product product = new Product();
+        product.setProductName("Product 1");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product deletedProduct = productRepository.delete(product.getProductId());
+        assertEquals(product.getProductId(), deletedProduct.getProductId());
+        assertEquals(product.getProductName(), deletedProduct.getProductName());
+        assertEquals(product.getProductQuantity(), deletedProduct.getProductQuantity());
+
+        Product deletedProductIfSearch = productRepository.findById(product.getProductId());
+        assertNull(deletedProductIfSearch);
+    }
+
+    @Test
+    void testDeleteProductIfEmpty() {
+        String randomId = UUID.randomUUID().toString();
+
+        Product deletedProduct = productRepository.delete(randomId);
+        assertNull(deletedProduct);
+    }
+
+    @Test
+    void testDeleteProductIfDoesNotExist() {
+        Product product1 = new Product();
+        product1.setProductName("Product 1");
+        product1.setProductQuantity(100);
+        productRepository.create(product1);
+
+        Product product2 = new Product();
+        product2.setProductName("Product 2");
+        product2.setProductQuantity(200);
+        productRepository.create(product2);
+
+        String randomId = UUID.randomUUID().toString();
+
+        Product findedProduct = productRepository.delete(randomId);
+        assertNull(findedProduct);
     }
 }
