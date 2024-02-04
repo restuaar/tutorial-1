@@ -24,12 +24,12 @@
       <td th:text="${product.productName}"></td>
       <td th:text="${product.productQuantity}"></td>
       <td>
-        <a
-            th:href="@{'/product/delete/' + ${product.productId}}"
-            class="btn btn-danger btn-sm"
+        <form
+            th:action="@{'/product/delete/' + ${product.productId}}"
+            th:method="delete"
         >
-          Delete
-        </a>
+          <button class="btn btn-danger btn-sm" th:type="submit">Delete</button>
+        </form>
       </td>
     </tr>
     </tbody>
