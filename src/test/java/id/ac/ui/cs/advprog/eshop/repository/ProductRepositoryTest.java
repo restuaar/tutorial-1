@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Iterator;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -66,5 +67,131 @@ public class ProductRepositoryTest {
         savedProduct = productIterator.next();
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testFindByIdProduct() {
+        Product product = new Product();
+        product.setProductName("Product 1");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product findedProduct = productRepository.findById(product.getProductId());
+        assertEquals(product.getProductId(), findedProduct.getProductId());
+        assertEquals(product.getProductName(), findedProduct.getProductName());
+        assertEquals(product.getProductQuantity(), findedProduct.getProductQuantity());
+    }
+
+    @Test
+    void testFindByIdProductIfDoesNotExist() {
+        Product product1 = new Product();
+        product1.setProductName("Product 1");
+        product1.setProductQuantity(100);
+        productRepository.create(product1);
+
+        Product product2 = new Product();
+        product2.setProductName("Product 2");
+        product2.setProductQuantity(200);
+        productRepository.create(product2);
+
+        String randomId = UUID.randomUUID().toString();
+
+        Product findedProduct = productRepository.findById(randomId);
+        assertNull(findedProduct);
+    }
+
+    @Test
+    void testFindByIdProductIfMoreThanOneProduct() {
+        for (int i = 0; i < 5; i++) {
+            Product product = new Product();
+            product.setProductName(String.format("Product %d", i + 1));
+            product.setProductQuantity(100 + i);
+            productRepository.create(product);
+        }
+
+        Product lastProduct = new Product();
+        lastProduct.setProductName("Last Product");
+        lastProduct.setProductQuantity(130);
+        productRepository.create(lastProduct);
+
+        Product findedProduct = productRepository.findById(lastProduct.getProductId());
+        assertEquals(lastProduct.getProductId(), findedProduct.getProductId());
+        assertEquals(lastProduct.getProductName(), findedProduct.getProductName());
+        assertEquals(lastProduct.getProductQuantity(), findedProduct.getProductQuantity());
+    }
+
+    @Test
+    void testEditAndFindByIdProduct() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Product 1");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product findProductById = productRepository.findById(product.getProductId());
+        assertEquals(findProductById.getProductId(), product.getProductId());
+        assertEquals(findProductById.getProductName(), product.getProductName());
+        assertEquals(findProductById.getProductQuantity(), product.getProductQuantity());
+
+        Product editProductData = new Product();
+        editProductData.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        editProductData.setProductName("Product 1 Edited");
+        editProductData.setProductQuantity(200);
+        productRepository.edit(editProductData);
+
+        Product editedProduct = productRepository.findById(editProductData.getProductId());
+        assertEquals(editProductData.getProductId(), editedProduct.getProductId());
+        assertEquals("Product 1 Edited", editedProduct.getProductName());
+        assertEquals(200, editedProduct.getProductQuantity());
+    }
+
+    @Test
+    void testEditProductIfQuantityPositive() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Product 1");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product findProductById = productRepository.findById(product.getProductId());
+        assertEquals(findProductById.getProductId(), product.getProductId());
+        assertEquals(findProductById.getProductName(), product.getProductName());
+        assertEquals(findProductById.getProductQuantity(), product.getProductQuantity());
+
+        Product editProductData = new Product();
+        editProductData.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        editProductData.setProductName("Product 1 Edited");
+        editProductData.setProductQuantity(110);
+        productRepository.edit(editProductData);
+
+        Product editedProduct = productRepository.findById(editProductData.getProductId());
+        assertEquals(editProductData.getProductId(), editedProduct.getProductId());
+        assertEquals("Product 1 Edited", editedProduct.getProductName());
+        assertEquals(110, editedProduct.getProductQuantity());
+    }
+
+    @Test
+    void testEditProductIfQuantityNegative() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Product 1");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product findProductById = productRepository.findById(product.getProductId());
+        assertEquals(findProductById.getProductId(), product.getProductId());
+        assertEquals(findProductById.getProductName(), product.getProductName());
+        assertEquals(findProductById.getProductQuantity(), product.getProductQuantity());
+
+        Product editProductData = new Product();
+        editProductData.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        editProductData.setProductName("Product 1 Edited");
+        editProductData.setProductQuantity(-120);
+        productRepository.edit(editProductData);
+
+        Product editedProduct = productRepository.findById(editProductData.getProductId());
+        assertEquals(editProductData.getProductId(), editedProduct.getProductId());
+        assertEquals("Product 1 Edited", editedProduct.getProductName());
+        assertEquals(0, editedProduct.getProductQuantity());
     }
 }
