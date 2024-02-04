@@ -16,13 +16,18 @@ public class ProductRepository {
         return product;
     }
 
-    public void delete(String productId){
+    public Product delete(String productId){
         Product deletedProduct = this.findById(productId);
         productData.remove(deletedProduct);
+        return deletedProduct;
     }
 
     public Product edit(Product editedProduct) {
         String editedProductId = editedProduct.getProductId();
+        int editedProductQuantity = editedProduct.getProductQuantity();
+
+        if (editedProductQuantity <= 0) editedProduct.setProductQuantity(0);
+
         Product productInRepository = this.findById(editedProductId);
         int indexEditedProduct = productData.indexOf(productInRepository);
         productData.set(indexEditedProduct, editedProduct);
