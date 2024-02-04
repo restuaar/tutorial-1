@@ -16,6 +16,7 @@
     <tr>
       <th scope="col">Product Name</th>
       <th scope="col">Quantity</th>
+      <th scope="col">Edit</th>
       <th scope="col">Delete</th>
     </tr>
     </thead>
@@ -23,6 +24,13 @@
     <tr th:each="product: ${products}">
       <td th:text="${product.productName}"></td>
       <td th:text="${product.productQuantity}"></td>
+      <td>
+          <a
+                th:href="@{'/product/edit/' + ${product.productId}}"
+                th:text="Edit"
+                class="btn btn-danger btn-sm"
+          ></a>
+      </td>
       <td>
         <form
             th:action="@{'/product/delete/' + ${product.productId}}"
