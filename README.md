@@ -22,3 +22,11 @@ Setelah mengikuti tutorial dan exercise menggunakan Spring Boot terdapat beberap
 
  - ***Error Handling***  
   Masih ada beberapa yang perlu ditambah dalam menangani beberapa *error* seperti pada saat user membuat *product* ketika *name product* yang kosong dan *quantity product* yang kosong maupun nilai kurang dari 0.
+
+## Refleksi 2
+1. Setelah menulis unit test terdapat perasaan seperti kepuasan bisa membuat beberapa unit test apalagi ketika melihat test tersebut berhasil, dan juga lebih percaya diri terhadap kode yang kita buat. Menurut saya, *Code Coverage* memiliki cakupan kode 100% tidak menjamin kode bebas dari *bug* atau kesalahan. *Code Coverage* merupakan suatu metrik untuk mengukur persentase kode yang kita buat dieksekusi.
+
+2. Menggunakan kembali prosedur penyiapan dan variabel contoh dari rangkaian tes fungsional yang ada membuat konsistensi terjaga dan sudah terbiasa pada setiap test. Namun terdapat kemungkinan masalah pada *clean code* seperti
+    - Dengan semakin banyaknya test yang ditambahkan, terdapat risiko keberagaman pada prosedur setup dan variabel instance sehingga kemungkinan membutuhkan variabel dan *set up* yang berbeda. Sehingga diperlukan pembaruan terhadap *set up* baru.
+    - Rangkaian tes yang baru dapat menyebabkan duplikasi kode jika variabel contoh sama dengan rangkaian tes yang sudah ada.
+    - Beberapa nama kasus uji kurang deskriptif, sehingga menghambat pemahaman. 
