@@ -7,28 +7,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductTest {
 
-    Product product;
+  Product product;
 
-    @BeforeEach
-    void setUp() {
-        this.product = new Product();
-        this.product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        this.product.setProductName("Product 1");
-        this.product.setProductQuantity(100);
-    }
+  @BeforeEach
+  void setUp() {
+    this.product = new Product();
+    this.product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+    this.product.setProductName("Product 1");
+    this.product.setProductQuantity(100);
+  }
 
-    @Test
-    void testGetProductId() {
-        assertEquals("eb558e9f-1c39-460e-8860-71af6af63bd6", this.product.getProductId());
-    }
+  @Test
+  void testGetProductId() {
+    assertEquals("eb558e9f-1c39-460e-8860-71af6af63bd6", this.product.getProductId());
+  }
 
-    @Test
-    void testGetProductName() {
-        assertEquals("Product 1", this.product.getProductName());
-    }
+  @Test
+  void testGetProductName() {
+    assertEquals("Product 1", this.product.getProductName());
+  }
 
-    @Test
-    void testGetProductQuantity() {
-        assertEquals(100, this.product.getProductQuantity());
-    }
+  @Test
+  void testGetProductQuantity() {
+    assertEquals(100, this.product.getProductQuantity());
+  }
 }
