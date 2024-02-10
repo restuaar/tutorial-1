@@ -3,7 +3,6 @@ package id.ac.ui.cs.advprog.eshop.service;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,8 +10,12 @@ import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-  @Autowired
-  private ProductRepository productRepository;
+
+  private final ProductRepository productRepository;
+
+  public ProductServiceImpl(ProductRepository productRepository) {
+    this.productRepository = productRepository;
+  }
 
   @Override
   public Product create(Product product) {
@@ -22,8 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public Product delete(String productId) {
-    Product deletedProduct = productRepository.delete(productId);
-    return deletedProduct;
+    return productRepository.delete(productId);
   }
 
   @Override
