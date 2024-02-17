@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.repository.CarRepository;
 
+@Service
 public class CarServiceImpl implements CarService {
   @Autowired
   private CarRepository carRepository;
