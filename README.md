@@ -1,9 +1,15 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=advance-programming-tutorial_tutorial-1&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=advance-programming-tutorial_tutorial-1)
+# Tutorial for Advance Programming Course 2023/2024
 
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=advance-programming-tutorial_tutorial-1&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=advance-programming-tutorial_tutorial-1)
+### SonarCloud
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=advance-programming-tutorial_tutorial-1&metric=coverage)](https://sonarcloud.io/summary/new_code?id=advance-programming-tutorial_tutorial-1)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=advance-programming-tutorial_tutorial-1&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=advance-programming-tutorial_tutorial-1)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=advance-programming-tutorial_tutorial-1&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=advance-programming-tutorial_tutorial-1)  
+Link [SonarCloud](https://sonarcloud.io/summary/new_code?id=advance-programming-tutorial_tutorial-1)
 
+### Web Deployment
+
+Link [Web Deployment](https://eshop-restu-advance-programming-tutorial.koyeb.app/)
 
 **Nama** : **Restu Ahmad Ar Ridho** <br/>
 **NPM** : **2206028951** <br/>
@@ -22,12 +28,12 @@
 
    **Strategi :** Mengubah objek yang menggunakan injeksi @Autowired dengan membuat inisiasi _class_ langsung.
 
-2. **Immediately Return Expression (Intentionality)**
+2. **Immediately Return Expression (Intentionality)**  
    Mendeklarasikan variabel hanya untuk _return_ dianggap sebagai praktik yang buruk karena menambah kerumitan yang tidak perlu. Praktik ini dapat membuat kode menjadi lebih sulit untuk dibaca dan dipahami, karena langkah tambahan yang tidak menambah nilai apa pun. Daripada mendeklarasikan variabel dan kemudian langsung _return_, umumnya lebih baik _return_ secara langsung. Hal ini membuat kode menjadi lebih bersih, sederhana, dan lebih mudah dipahami.
 
    **Strategi :** Menghapus variabel yang tidak langsung me-_return_ langsung dan juga mengubahnya menjadi _return_ langsung.
 
-3. **Modifier JUnit5 Unnecessary public (Intentionality)**
+3. **Modifier JUnit5 Unnecessary public (Intentionality)**  
    JUnit5 lebih toleran dalam hal visibilitas kelas dan metode pengujian daripada JUnit4, yang mengharuskan semuanya bersifat publik. Kelas dan metode uji dapat memiliki visibilitas apa pun kecuali privat. Namun disarankan untuk menggunakan visibilitas paket default untuk meningkatkan keterbacaan.
 
    **Strategi :** Mengubah class test case yang masih memiliki modifier masih `public` menjadi modifier default.
