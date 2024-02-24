@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Repository
-public class CarRepository {
+public class CarRepository implements BaseRepository<Car> {
   private List<Car> carData = new ArrayList<>();
 
   public Car create(Car car) {
@@ -37,9 +37,13 @@ public class CarRepository {
       return null;
     }
 
+    int updatedCarQuantity = updatedCar.getCarQuantity();
+    if (updatedCarQuantity <= 0)
+      updatedCar.setCarQuantity(0);
+
     carInRepository.setCarName(updatedCar.getCarName());
     carInRepository.setCarColor(updatedCar.getCarColor());
-    carInRepository.setCarQuantity(updatedCar.getCarQuantity());
+    carInRepository.setCarQuantity(updatedCarQuantity);
     return carInRepository;
   }
 

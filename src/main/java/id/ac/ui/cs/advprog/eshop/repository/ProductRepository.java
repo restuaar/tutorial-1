@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Repository
-public class ProductRepository {
+public class ProductRepository implements BaseRepository<Product> {
   private List<Product> productData = new ArrayList<>();
 
   public Product create(Product product) {
@@ -16,37 +16,40 @@ public class ProductRepository {
     return product;
   }
 
-  public Product delete(String productId) {
-    Product deletedProduct = this.findById(productId);
-    productData.remove(deletedProduct);
-    return deletedProduct;
-  }
-
-  public Product edit(Product editedProduct) {
-    String editedProductId = editedProduct.getProductId();
-    int editedProductQuantity = editedProduct.getProductQuantity();
-
-    if (editedProductQuantity <= 0)
-      editedProduct.setProductQuantity(0);
-
-    Product productInRepository = this.findById(editedProductId);
-    int indexEditedProduct = productData.indexOf(productInRepository);
-    productData.set(indexEditedProduct, editedProduct);
-    return editedProduct;
-  }
-
   public Iterator<Product> findAll() {
     return productData.iterator();
   }
 
-  public Product findById(String findProductId) {
-    Iterator<Product> productIterator = this.findAll();
-    while (productIterator.hasNext()) {
-      Product dataProduct = productIterator.next();
-      if (dataProduct.getProductId().equals(findProductId)) {
-        return dataProduct;
+  public Product findById(String productId) {
+    for (Product product : productData) {
+      if (product.getProductId().equals(productId)) {
+        return product;
       }
     }
     return null;
+  }
+
+  public Product update(Product updatedProduct) {
+    String updatedProductId = updatedProduct.getProductId();
+    Product productInRepository = this.findById(updatedProductId);
+
+    if (productInRepository == null) {
+      return null;
+    }
+
+    int updatedProductQuantity = updatedProduct.getProductQuantity();
+
+    if (updatedProductQuantity <= 0)
+      updatedProduct.setProductQuantity(0);
+
+    productInRepository.setProductName(updatedProduct.getProductName());
+    productInRepository.setProductQuantity(updatedProductQuantity);
+    return updatedProduct;
+  }
+
+  public Product delete(String productId) {
+    Product deletedProduct = this.findById(productId);
+    productData.remove(deletedProduct);
+    return deletedProduct;
   }
 }
