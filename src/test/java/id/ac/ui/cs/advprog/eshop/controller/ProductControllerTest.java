@@ -86,6 +86,6 @@ class ProductControllerTest {
     String expectedViewName = "redirect:list";
     String actualViewName = productController.editProductPost(product);
     assertEquals(expectedViewName, actualViewName);
-    verify(productService, times(1)).edit(product);
+    verify(productService, times(1)).update(product);
   }
 }

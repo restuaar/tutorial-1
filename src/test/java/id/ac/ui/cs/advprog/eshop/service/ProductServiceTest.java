@@ -71,12 +71,12 @@ class ProductServiceTest {
   @Test
   void testEditProduct() {
     Product product = new Product();
-    when(productRepository.edit(product)).thenReturn(product);
+    when(productRepository.update(product)).thenReturn(product);
 
-    Product editedProduct = productService.edit(product);
+    Product editedProduct = productService.update(product);
 
     assertEquals(product, editedProduct);
-    verify(productRepository, times(1)).edit(product);
+    verify(productRepository, times(1)).update(product);
   }
 
   @Test
