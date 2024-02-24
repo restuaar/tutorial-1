@@ -22,12 +22,7 @@ public class ProductServiceImpl implements ProductService {
     productRepository.create(product);
     return product;
   }
-
-  @Override
-  public Product delete(String productId) {
-    return productRepository.delete(productId);
-  }
-
+  
   @Override
   public List<Product> findAll() {
     Iterator<Product> productIterator = productRepository.findAll();
@@ -35,15 +30,20 @@ public class ProductServiceImpl implements ProductService {
     productIterator.forEachRemaining(allProduct::add);
     return allProduct;
   }
+  
+  @Override
+  public Product findById(String findProductId) {
+    return productRepository.findById(findProductId);
+  }
 
   @Override
-  public Product edit(Product editedProduct) {
+  public Product update(Product editedProduct) {
     productRepository.edit(editedProduct);
     return editedProduct;
   }
 
   @Override
-  public Product findById(String findProductId) {
-    return productRepository.findById(findProductId);
+  public Product delete(String productId) {
+    return productRepository.delete(productId);
   }
 }

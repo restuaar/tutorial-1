@@ -50,15 +50,14 @@ class CarController {
 
   @PostMapping("/editCar")
   public String editCarPost(@ModelAttribute Car car, Model model) {
-    System.out.println(car.getCarId());
-    carservice.update(car.getCarId(), car);
+    carservice.update(car);
 
     return "redirect:listCar";
   }
 
   @PostMapping("/deleteCar")
   public String deleteCar(@RequestParam("carId") String carId) {
-    carservice.deleteCarById(carId);
+    carservice.delete(carId);
     return "redirect:listCar";
   }
 }

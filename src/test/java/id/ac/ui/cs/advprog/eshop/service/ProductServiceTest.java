@@ -73,7 +73,7 @@ class ProductServiceTest {
     Product product = new Product();
     when(productRepository.edit(product)).thenReturn(product);
 
-    Product editedProduct = productService.edit(product);
+    Product editedProduct = productService.update(product);
 
     assertEquals(product, editedProduct);
     verify(productRepository, times(1)).edit(product);
