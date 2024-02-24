@@ -40,10 +40,11 @@ public class CarRepository implements BaseRepository<Car> {
     int updatedCarQuantity = updatedCar.getCarQuantity();
     if (updatedCarQuantity <= 0)
       updatedCar.setCarQuantity(0);
+    else
+      updatedCar.setCarQuantity(updatedCar.getCarQuantity());
 
     carInRepository.setCarName(updatedCar.getCarName());
     carInRepository.setCarColor(updatedCar.getCarColor());
-    carInRepository.setCarQuantity(updatedCarQuantity);
     return carInRepository;
   }
 

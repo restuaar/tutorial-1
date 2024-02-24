@@ -38,12 +38,13 @@ public class ProductRepository implements BaseRepository<Product> {
     }
 
     int updatedProductQuantity = updatedProduct.getProductQuantity();
-
     if (updatedProductQuantity <= 0)
-      updatedProduct.setProductQuantity(0);
+      productInRepository.setProductQuantity(0);
+    else
+      productInRepository.setProductQuantity(updatedProduct.getProductQuantity());
 
     productInRepository.setProductName(updatedProduct.getProductName());
-    productInRepository.setProductQuantity(updatedProductQuantity);
+
     return updatedProduct;
   }
 
