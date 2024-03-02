@@ -137,7 +137,7 @@ class ProductRepositoryTest {
     editProductData.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
     editProductData.setProductName("Product 1 Edited");
     editProductData.setProductQuantity(200);
-    productRepository.edit(editProductData);
+    productRepository.update(editProductData);
 
     Product editedProduct = productRepository.findById(editProductData.getProductId());
     assertEquals(editProductData.getProductId(), editedProduct.getProductId());
@@ -162,7 +162,7 @@ class ProductRepositoryTest {
     editProductData.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
     editProductData.setProductName("Product 1 Edited");
     editProductData.setProductQuantity(110);
-    productRepository.edit(editProductData);
+    productRepository.update(editProductData);
 
     Product editedProduct = productRepository.findById(editProductData.getProductId());
     assertEquals(editProductData.getProductId(), editedProduct.getProductId());
@@ -187,7 +187,7 @@ class ProductRepositoryTest {
     editProductData.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
     editProductData.setProductName("Product 1 Edited");
     editProductData.setProductQuantity(-120);
-    productRepository.edit(editProductData);
+    productRepository.update(editProductData);
 
     Product editedProduct = productRepository.findById(editProductData.getProductId());
     assertEquals(editProductData.getProductId(), editedProduct.getProductId());
