@@ -15,43 +15,17 @@ Link [Web Deployment](https://eshop-restu-advance-programming-tutorial.koyeb.app
 **NPM** : **2206028951** <br/>
 **Kelas** : **Advance Programming - A**
 
-## Tutorial 3
+## Tutorial 4
 
 ### Refleksi
 
-#### 1. Explain What Principles You Apply
+#### 1. Whether This TDD Flow Is Useful Enough For You Or Not
 
-1. Membuat berkas baru sehinnga class untuk CarController dilakukan pemisahan antara ProductController dan CarController sehingga CarController tidak perlu untuk melakukan `extends` untuk menerapkan LSP dan RSP.
-2. Saat objek Car dibuat sudah langsung terdapat UUID sehingga kita tidak perlu melakukan pengemeriksaan terhadap UUID pada intance Car untuk menerapkan SRP.
-3. Membuat interface CRUDService yang dapat di _implement_ oleh interface service lainnya sehingga setiap service juga meng-_implement_ interface yang berbeda untuk menerapkan segregation interface untuk ISP.
-4. Menambahkan interface CRUDService dan BaseRepository sehingga modul bergantung terhadap interface yang sesuai untuk menerapkan DIP.
+Berdasarkan pertanyaan-pertanyaan Percival (2017), menurut saya TDD sangat berguna dalam meningkatkan kualitas kode dan mengurangi bug dalam proyek yang sedang dikerjakan sehingga terdapat keyakinan terhadap kode yang dibuat. Dengan menulis tes sebelum mengimplementasikan fitur, TDD membuat pendekatan dalam membuat kodingan menjadi lebih sistematis untuk pengembangan dan memastikan bahwa setiap bagian dari kode memenuhi persyaratan yang ditentukan. Meskipun saat melakukan TDD sangat susah diawal karena kita harus menulis apa saja yang dibutuhkan dan berandai-andai bagaimana output dari kode kita selain itu kita juga memikirkan berbagai macam skenario yang akan terjadi meskipun kita belum memulai ngoding tersebut.
 
-#### 2. Advantages of Applying SOLID Principles to Your Project with Examples
+#### 2. Tests Have Successfully Dollowed F.I.R.S.T. Principle Or Not
 
-1. Single Responsibility Principle (SRP)  
-   Dengan memisahkan tanggung jawab antara controller product dan car membuat kelas-kelas tersebut lebih fokus terhadap tugasnya dan lebih mudah dipahami. Misalnya, jika ada perubahan dalam logika terkait product, tidak berdampak pada logika yang berkaitan dengan car. Dengan ini mengurangi kompleksitas dan meningkatkan keterbacaan kode.
-2. Open/Closed Principle (OCP)  
-   Meskipun belum diimplementasikan dengan menerapkan prinsip OCP dapat membantu dalam menghindari perubahan langsung pada kelas yang ada, sehingga mengurangi risiko perubahan merusak fungsionalitas yang ada. Misalnya, jika harus menambahkan fitur baru sehingga dapat melakukannya melalui ekstensi (misalnya, dengan menambahkan kelas baru yang mengimplementasikan interface yang ada) daripada mengubah kode yang sudah ada.
-3. Liskov Substitution Principle (LSP)  
-   Dengan memisahkan controller antara product dan car dan memastikan bahwa kelas-kelas dapat digantikan tanpa mempengaruhi fungsionalitas sistem sehingga membuat kode lebih mudah untuk diperbesar dan dites karena controller car tidak perlu untuk melakuakan extends terhadap product controller.
-4. Interface Segregation Principle (ISP)  
-   Dengan memisahkan masing-masing interface service dan membuat interface CRUDService menghindari ketergantungan yang tidak perlu pada metode yang tidak digunakan. Ini membuat kode lebih bersih dan lebih modular. Misalnya, jika kita ingin menambahkan method atau fungsi baru yang berkaitan hanya dengan product kita tinggal menambahkan pada interface service product.
-5. Dependency Inversion Principle (DIP):
-   Dengan mengubah tipe objek dari service mobil dan tipe objek repositori pada berkas service sehingga meningkatkan fleksibilitas dalam menggunakan berbagai implementasi layanan. Misalnya, jika perlu mengganti implementasi layanan mobil di masa depan hanya perlu membuat implementasi baru sesuai dengan antarmuka yang ada tanpa perlu mengubah sesuatu yang bergantung padanya.
-
-#### 3. Disadvantages of Not Applying SOLID Principles to Your Project with Examples
-
-1. Single Responsibility Principle (SRP)  
-   Jika sebuah kelas atau modul tidak mengikuti SRP, berarti kelas tersebut memiliki tanggung jawab yang berlebihan. Hal ini dapat mengakibatkan perubahan dalam satu fungsionalitas memengaruhi bagian lain yang seharusnya tidak terkait, dan menyulitkan pemeliharaan kode.  
-   Jika controller product dan car digabungkan semua kedalam satu class controller akan mengakibatkan kebingungan dalam pemeliharan kode.
-2. Open/Closed Principle (OCP)  
-   Tanpa menerapkan OCP, aplikasi akan sulit untuk diperluas karena setiap perubahan atau penambahan fitur baru memerlukan modifikasi langsung pada kode yang sudah ada, dapat merusak fungsionalitas yang sudah ada.
-3. Liskov Substitution Principle (LSP)  
-   Tanpa menerapkan LSP, aplikasi mungkin memiliki hierarki kelas yang tidak konsisten, menyebabkan kebingungan dan risiko bug ketika mengganti instance dari superclass dengan instance subclass. Jika kita melakukan extends pada controller car yang seharusnya tidak diperlukan ada kemungkinan jika kita ingin menambahkan fitur pada controller product akan berdampak terhadap controller car.
-4. Interface Segregation Principle (ISP)  
-   Tanpa mematuhi ISP, kelas-kelas mungkin terpaksa mengimplementasikan metode-metode yang tidak relevan untuk mereka, meningkatkan kompleksitas dan mempersulit pengujian serta pemeliharaan. Misalnya jika tidak diterapkan ISP ketika ingin menambahkan fitur baru pada service product, service car harus mengikutinya yang seharusnya tidak perlu.
-5. Dependency Inversion Principle (DIP)  
-   Tanpa menerapkan DIP, kelas-kelas tingkat tinggi dalam aplikasi Spring Boot menjadi terlalu terikat pada kelas-kelas tingkat rendah, meningkatkan ketergantungan dan menghambat fleksibilitas serta kemampuan untuk melakukan pengujian secara efektif. Jika controller car langsung bergantung pada implementasi dari service car, maka controller tidak hanya bertanggung jawab untuk menggunakan layanan tersebut, tetapi juga harus mengetahui bagaimana layanan tersebut diimplementasikan sehingga menghalangi fleksibilitas.
+Menurut saya tes unit yang dibuat selama tutorial ini sudah sesuai dengan prinsip FIRST. Sebagai contoh, pengujian dirancang untuk dijalankan sesegera mungkin, meminimalkan gangguan selama pengembangan. Tes-tes tersebut disusun agar tidak bergantung satu sama lain, memastikan bahwa perubahan pada satu tes tidak memengaruhi hasil tes lainnya. Selain itu, pengujiannya menyeluruh, mencakup berbagai skenario dan kasus-kasus yang tidak terduga, sehingga menanamkan kepercayaan diri pada ketahanan basis kode. Selain itu, teknik-teknik seperti menggunakan setUp, Mock, dan Assert berkontribusi pada sifat validasi mandiri dari tes. Secara keseluruhan, dengan mengikuti prinsip F.I.R.S.T., unit test memfasilitasi proses pengembangan perangkat lunak yang efisien dan efektif.
 
 <hr/>
 
@@ -118,3 +92,43 @@ Setelah mengikuti tutorial dan exercise menggunakan Spring Boot terdapat beberap
 Menurut saya dengan implementasi sekarang sudah memenuhi definisi dari CI/CD. Dengan github workflows ini, projek kita dapat melakukan automasi dalam CI yaitu pada _running test_ dan automasi juga terhadap CD pada _deployment_ yang otomatis akan terlaksanakan pada setiap kali kita melakukan `push` ke repository GitHub kita. Setiap kita melakukan `push` pada branch manapun kode kita akan melalui _test case_ dengan action yang tertera pada `ci.yml` dan melakukan scan terhadap kode kita dengan action dengan SonarCloud. Ketika dirasa sudah berhasil dan baik kode kita akan melakukan `merge` ke branch `main` dimana terdapat automasi untuk melakukan deployment ke PaaS Koyeb dan kode security menggunakan action `scorecard.yml`. Sehingga action-action tersebut membentuk workflows otomatis pada Software Development Lifecycle yang terdapat juga CI/CD.
 
    </details>
+
+<details>
+  <summary> Tutorial 3 </summary>
+
+### Refleksi
+
+#### 1. Explain What Principles You Apply
+
+1. Membuat berkas baru sehinnga class untuk CarController dilakukan pemisahan antara ProductController dan CarController sehingga CarController tidak perlu untuk melakukan `extends` untuk menerapkan LSP dan RSP.
+2. Saat objek Car dibuat sudah langsung terdapat UUID sehingga kita tidak perlu melakukan pengemeriksaan terhadap UUID pada intance Car untuk menerapkan SRP.
+3. Membuat interface CRUDService yang dapat di _implement_ oleh interface service lainnya sehingga setiap service juga meng-_implement_ interface yang berbeda untuk menerapkan segregation interface untuk ISP.
+4. Menambahkan interface CRUDService dan BaseRepository sehingga modul bergantung terhadap interface yang sesuai untuk menerapkan DIP.
+
+#### 2. Advantages of Applying SOLID Principles to Your Project with Examples
+
+1. Single Responsibility Principle (SRP)  
+   Dengan memisahkan tanggung jawab antara controller product dan car membuat kelas-kelas tersebut lebih fokus terhadap tugasnya dan lebih mudah dipahami. Misalnya, jika ada perubahan dalam logika terkait product, tidak berdampak pada logika yang berkaitan dengan car. Dengan ini mengurangi kompleksitas dan meningkatkan keterbacaan kode.
+2. Open/Closed Principle (OCP)  
+   Meskipun belum diimplementasikan dengan menerapkan prinsip OCP dapat membantu dalam menghindari perubahan langsung pada kelas yang ada, sehingga mengurangi risiko perubahan merusak fungsionalitas yang ada. Misalnya, jika harus menambahkan fitur baru sehingga dapat melakukannya melalui ekstensi (misalnya, dengan menambahkan kelas baru yang mengimplementasikan interface yang ada) daripada mengubah kode yang sudah ada.
+3. Liskov Substitution Principle (LSP)  
+   Dengan memisahkan controller antara product dan car dan memastikan bahwa kelas-kelas dapat digantikan tanpa mempengaruhi fungsionalitas sistem sehingga membuat kode lebih mudah untuk diperbesar dan dites karena controller car tidak perlu untuk melakuakan extends terhadap product controller.
+4. Interface Segregation Principle (ISP)  
+   Dengan memisahkan masing-masing interface service dan membuat interface CRUDService menghindari ketergantungan yang tidak perlu pada metode yang tidak digunakan. Ini membuat kode lebih bersih dan lebih modular. Misalnya, jika kita ingin menambahkan method atau fungsi baru yang berkaitan hanya dengan product kita tinggal menambahkan pada interface service product.
+5. Dependency Inversion Principle (DIP):
+   Dengan mengubah tipe objek dari service mobil dan tipe objek repositori pada berkas service sehingga meningkatkan fleksibilitas dalam menggunakan berbagai implementasi layanan. Misalnya, jika perlu mengganti implementasi layanan mobil di masa depan hanya perlu membuat implementasi baru sesuai dengan antarmuka yang ada tanpa perlu mengubah sesuatu yang bergantung padanya.
+
+#### 3. Disadvantages of Not Applying SOLID Principles to Your Project with Examples
+
+1. Single Responsibility Principle (SRP)  
+   Jika sebuah kelas atau modul tidak mengikuti SRP, berarti kelas tersebut memiliki tanggung jawab yang berlebihan. Hal ini dapat mengakibatkan perubahan dalam satu fungsionalitas memengaruhi bagian lain yang seharusnya tidak terkait, dan menyulitkan pemeliharaan kode.  
+   Jika controller product dan car digabungkan semua kedalam satu class controller akan mengakibatkan kebingungan dalam pemeliharan kode.
+2. Open/Closed Principle (OCP)  
+   Tanpa menerapkan OCP, aplikasi akan sulit untuk diperluas karena setiap perubahan atau penambahan fitur baru memerlukan modifikasi langsung pada kode yang sudah ada, dapat merusak fungsionalitas yang sudah ada.
+3. Liskov Substitution Principle (LSP)  
+   Tanpa menerapkan LSP, aplikasi mungkin memiliki hierarki kelas yang tidak konsisten, menyebabkan kebingungan dan risiko bug ketika mengganti instance dari superclass dengan instance subclass. Jika kita melakukan extends pada controller car yang seharusnya tidak diperlukan ada kemungkinan jika kita ingin menambahkan fitur pada controller product akan berdampak terhadap controller car.
+4. Interface Segregation Principle (ISP)  
+   Tanpa mematuhi ISP, kelas-kelas mungkin terpaksa mengimplementasikan metode-metode yang tidak relevan untuk mereka, meningkatkan kompleksitas dan mempersulit pengujian serta pemeliharaan. Misalnya jika tidak diterapkan ISP ketika ingin menambahkan fitur baru pada service product, service car harus mengikutinya yang seharusnya tidak perlu.
+5. Dependency Inversion Principle (DIP)  
+ Tanpa menerapkan DIP, kelas-kelas tingkat tinggi dalam aplikasi Spring Boot menjadi terlalu terikat pada kelas-kelas tingkat rendah, meningkatkan ketergantungan dan menghambat fleksibilitas serta kemampuan untuk melakukan pengujian secara efektif. Jika controller car langsung bergantung pada implementasi dari service car, maka controller tidak hanya bertanggung jawab untuk menggunakan layanan tersebut, tetapi juga harus mengetahui bagaimana layanan tersebut diimplementasikan sehingga menghalangi fleksibilitas.
+</details>
