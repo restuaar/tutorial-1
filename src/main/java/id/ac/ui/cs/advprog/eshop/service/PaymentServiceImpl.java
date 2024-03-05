@@ -20,8 +20,6 @@ public class PaymentServiceImpl implements PaymentService {
   @Autowired
   private PaymentRepository paymentRepository;
 
-  @Autowired
-
   @Override
   public Payment addPayment(Order order, String method, Map<String, String> paymentData) {
     Payment payment;
@@ -30,9 +28,9 @@ public class PaymentServiceImpl implements PaymentService {
       return null;
     }
 
-    if (method.equals(PaymentMethod.CASH_ON_DELIVERY.getValue())) {
+    if (isCOD(method)) {
       payment = new PaymentCOD(order.getId(), order, paymentData);
-    } else if (method.equals(PaymentMethod.VOUCHER_CODE.getValue())) {
+    } else if (isVoucherCode(method)) {
       payment = new PaymentVoucherCode(method, order, paymentData);
     } else {
       throw new IllegalArgumentException();
@@ -64,14 +62,30 @@ public class PaymentServiceImpl implements PaymentService {
       throw new NoSuchElementException();
     }
 
-    if (payment.getStatus().equals(PaymentStatus.SUCCESS.getValue())) {
+    if (isStatusSuccess(payment.getStatus())) {
       payment.getOrder().setStatus(OrderStatus.SUCCESS.getValue());
-    } else if (payment.getStatus().equals(PaymentStatus.REJECTED.getValue())) {
+    } else if (isStatusRejected(payment.getStatus())) {
       payment.getOrder().setStatus(OrderStatus.FAILED.getValue());
     } else {
       throw new IllegalArgumentException();
     }
 
     return payment;
+  }
+
+  private boolean isCOD(String method) {
+    return method.equals(PaymentMethod.CASH_ON_DELIVERY.getValue());
+  }
+
+  private boolean isVoucherCode(String method) {
+    return method.equals(PaymentMethod.VOUCHER_CODE.getValue());
+  }
+
+  private boolean isStatusSuccess(String status) {
+    return status.equals(PaymentStatus.SUCCESS.getValue());
+  }
+
+  private boolean isStatusRejected(String status) {
+    return status.equals(PaymentStatus.REJECTED.getValue());
   }
 }
